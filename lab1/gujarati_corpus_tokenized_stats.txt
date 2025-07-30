@@ -1,0 +1,7 @@
+Total number of sentences: 1632
+Total number of words: 23504
+Total number of characters: 132007
+Average sentence length (words per sentence): 14.4
+Average word length (characters per word): 4.63
+Type-Token Ratio (TTR): 0.3609
+Total unique words: 8482
