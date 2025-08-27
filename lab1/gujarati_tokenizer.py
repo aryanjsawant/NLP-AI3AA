@@ -136,10 +136,6 @@ def save_tokenized_data(data, base_filename='gujarati_tokenized'):
     with open(f'{base_filename}.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
-    # Save as pickle (more efficient for Python)
-    with open(f'{base_filename}.pkl', 'wb') as f:
-        pickle.dump(data, f)
-    
     # Save summary statistics as text
     stats = compute_corpus_statistics(data)
     with open(f'{base_filename}_stats.txt', 'w', encoding='utf-8') as f:
@@ -190,52 +186,52 @@ def compute_corpus_statistics(processed_data):
     
     return statistics
 
-def main():
-    """Main function to run the complete pipeline"""
+# def main():
+#     """Main function to run the complete pipeline"""
     
-    # Step 1: Load the dataset
-    print("Loading Gujarati dataset...")
-    dataset = load_dataset("ai4bharat/IndicCorpV2", "indiccorp_v2", split="guj_Gujr", streaming=True)
+#     # Step 1: Load the dataset
+#     print("Loading Gujarati dataset...")
+#     dataset = load_dataset("ai4bharat/IndicCorpV2", "indiccorp_v2", split="guj_Gujr", streaming=True)
     
-    # Step 2: Process and tokenize the data
-    processed_data = process_dataset(dataset, max_examples=1000)  # Adjust max_examples as needed
+#     # Step 2: Process and tokenize the data
+#     processed_data = process_dataset(dataset, max_examples=1000)  # Adjust max_examples as needed
     
-    # Step 3: Save the tokenized data
-    print("Saving tokenized data...")
-    save_tokenized_data(processed_data)
+#     # Step 3: Save the tokenized data
+#     print("Saving tokenized data...")
+#     save_tokenized_data(processed_data)
     
-    # Step 4: Compute and display statistics
-    print("\nComputing corpus statistics...")
-    stats = compute_corpus_statistics(processed_data)
+#     # Step 4: Compute and display statistics
+#     print("\nComputing corpus statistics...")
+#     stats = compute_corpus_statistics(processed_data)
     
-    print("\n" + "="*50)
-    print("CORPUS STATISTICS")
-    print("="*50)
-    for key, value in stats.items():
-        print(f"{key}: {value}")
+#     print("\n" + "="*50)
+#     print("CORPUS STATISTICS")
+#     print("="*50)
+#     for key, value in stats.items():
+#         print(f"{key}: {value}")
     
-    return processed_data, stats
+#     return processed_data, stats
 
-# Example usage and testing
-if __name__ == "__main__":
-    # Test the tokenizer with some sample text
-    tokenizer = GujaratiTokenizer()
+# # Example usage and testing
+# if __name__ == "__main__":
+#     # Test the tokenizer with some sample text
+#     tokenizer = GujaratiTokenizer()
     
-    # Test sentence
-    test_text = "આજે હું દુકાને ગયો. મેં ખાણાની વસ્તુઓ ખરીદી। મારું ઇમેઇલ test@example.com છે. આજની તારીખ 25/07/2025 છે."
+#     # Test sentence
+#     test_text = "આજે હું દુકાને ગયો. મેં ખાણાની વસ્તુઓ ખરીદી। મારું ઇમેઇલ test@example.com છે. આજની તારીખ 25/07/2025 છે."
     
-    print("Testing tokenizer:")
-    print(f"Input: {test_text}")
-    print("\nSentences:")
-    sentences = tokenizer.sentence_tokenize(test_text)
-    for i, sent in enumerate(sentences, 1):
-        print(f"{i}. {sent}")
+#     print("Testing tokenizer:")
+#     print(f"Input: {test_text}")
+#     print("\nSentences:")
+#     sentences = tokenizer.sentence_tokenize(test_text)
+#     for i, sent in enumerate(sentences, 1):
+#         print(f"{i}. {sent}")
     
-    print("\nWords:")
-    words = tokenizer.word_tokenize(test_text)
-    for word in words:
-        word_type = tokenizer.classify_token(word)
-        print(f"'{word}' -> {word_type}")
+#     print("\nWords:")
+#     words = tokenizer.word_tokenize(test_text)
+#     for word in words:
+#         word_type = tokenizer.classify_token(word)
+#         print(f"'{word}' -> {word_type}")
     
-    # Uncomment the following line to run the main pipeline
-main()
+#     # Uncomment the following line to run the main pipeline
+# main()
